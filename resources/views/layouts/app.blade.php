@@ -40,7 +40,7 @@
     <footer class="footer">
         <div class="container footer-grid">
             <div class="footer-col about-us">
-                <img src="{{ asset('images/logo-peluk-wangi.png') }}" alt="Peluk Wangi Logo" class="footer-logo">
+                <img src="{{ asset('images/logo-peluk-wangi.jpg') }}" alt="Peluk Wangi Logo" class="footer-logo">
                 <p>Subscribe</p>
                 <p>Get 10% off your first order</p>
             </div>
