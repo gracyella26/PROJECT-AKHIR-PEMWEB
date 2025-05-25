@@ -1,33 +1,51 @@
 <?php
 
-namespace App\Http\Controllers;
+  namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
+  use App\Models\User;
+  use Illuminate\Http\Request;
+  use Illuminate\Support\Facades\Hash;
 
-class AuthController extends Controller
-{
-    public function showRegisterForm()
-    {
-        return view('auth.register');
-    }
+  class AuthController extends Controller
+  {
+      public function register(Request $request)
+      {
+          // Langkah 1: Tes respons sederhana
+          return response()->json(['message' => 'Test successful'], 200);
 
-    public function register(Request $request)
-    {
-        $request->validate([
-            'username' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|confirmed|min:6',
-            'terms' => 'accepted'
-        ]);
+          // Langkah 2: Uncomment setelah tes berhasil
+          /*
+          $request->validate([
+              'username' => 'required|string|unique:users',
+              'email' => 'required|string|email|unique:users',
+              'password' => 'required|string|min:6|confirmed',
+          ]);
 
-        User::create([
-            'name' => $request->username,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+          $user = User::create([
+              'username' => $request->username,
+              'email' => $request->email,
+              'password' => Hash::make($request->password),
+          ]);
 
-        return redirect('/')->with('success', 'Akun berhasil dibuat!');
-    }
-}
+          return response()->json(['message' => 'User registered', 'user' => $user], 201);
+          */
+      }
+
+      public function login(Request $request)
+      {
+          $request->validate([
+              'username' => 'required|string',
+              'password' => 'required|string',
+          ]);
+
+          $user = User::where('username', $request->username)->first();
+
+          if (!$user || !Hash::check($request->password, $user->password)) {
+              return response()->json(['message' => 'Invalid credentials'], 401);
+          }
+
+          $token = $user->createToken('auth_token')->plainTextToken;
+
+          return response()->json(['message' => 'Login successful', 'token' => $token], 200);
+      }
+  }
