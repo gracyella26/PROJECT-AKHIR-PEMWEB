@@ -22,9 +22,23 @@
             </div>
             <h3 class="text-brown mb-3">Rp {{ number_format($product->price, 0, ',', '.') }}</h3>
             <div class="shipping-info mb-3">
-                <p><i class="bi bi-truck"></i> Send to <strong>{{ $destination ?? 'Tulungagung' }}</strong> – Estimated 3–4 days</p>
+                <p><i class="bi bi-truck"></i> Send to <strong>{{ $destination ?? 'Tulungagung' }}</strong></p>
+                <p>Estimated 3–4 days</p>
             </div>
-            <p class="text-muted">Silakan hubungi admin untuk membeli produk ini.</p>
+            <form action="{{ route('cart.store') }}" method="POST" class="mt-4">
+                @csrf
+                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                
+                <div class="d-flex align-items-center mb-3">
+                <button type="button" class="btn btn-outline-secondary" onclick="updateQty(-1)">−</button>
+                <input type="number" id="qty" name="quantity" value="1" min="1" class="form-control text-center mx-2" style="width: 60px;" readonly>
+                <button type="button" class="btn btn-outline-secondary" onclick="updateQty(1)">+</button>
+                </div>
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-secondary">Add to Cart</button>
+                    <button type="submit" formaction="{{ route('checkout.buyNow') }}" class="btn btn-primary">Buy Now</button>
+                </div>
+            </form>
         </div>
     </div>
 

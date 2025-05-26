@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
+
 
 class CheckoutController extends Controller
 {
@@ -21,4 +23,27 @@ class CheckoutController extends Controller
     {
         return view('shipping'); // Buat view shipping.blade.php jika belum ada
     }
+
+    public function buyNow(Request $request)
+{
+    $request->validate([
+        'product_id' => 'required|exists:products,id',
+        'quantity' => 'required|integer|min:1',
+    ]);
+
+    $product = Product::findOrFail($request->product_id);
+    $quantity = $request->quantity;
+    $totalPrice = $product->price * $quantity;
+
+    $checkoutItems = [
+        [
+            'name' => $product->name,
+            'price' => $product->price,
+            'quantity' => $quantity,
+            'image' => $product->image,
+        ]
+    ];
+
+    return view('checkout', compact('checkoutItems', 'totalPrice'));
+}
 }

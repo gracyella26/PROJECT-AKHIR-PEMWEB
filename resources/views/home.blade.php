@@ -70,7 +70,7 @@
                     </div>
                     <p class="product-price">Rp 15.000</p>
                     <div class="product-actions">
-                        <a href="{{ route('product.detail', 'milk-honey-soap') }}" class="btn-primary">See Product</a>
+                        <a href="{{ route('product.detail', 'lavender-soap') }}" class="btn-primary">See Product</a>
                     </div>
                 </div>
                 <div class="product-card">
@@ -81,7 +81,7 @@
                     </div>
                     <p class="product-price">Rp 15.000</p>
                     <div class="product-actions">
-                        <a href="{{ route('product.detail', 'milk-honey-soap') }}" class="btn-primary">See Product</a>
+                        <a href="{{ route('product.detail', 'tamarind-milk-soap') }}" class="btn-primary">See Product</a>
                     </div>
                 </div>
                 <div class="product-card">

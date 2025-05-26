@@ -10,6 +10,8 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\RewardController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\CheckoutController;
+
 
 // Home Page
 Route::get('/', function () {
@@ -44,6 +46,8 @@ Route::get('/search', function () {
 })->name('search');
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
+Route::post('/checkout/buy-now', [CheckoutController::class, 'buyNow'])->name('checkout.buyNow');
 
 Route::get('/profile', function () {
     return "Halaman Profil Akan Datang";
@@ -77,7 +81,7 @@ Route::prefix('api')->group(function () {
     });
 
     Route::post('/contact', [ContactController::class, 'store']);
-
+    
     Route::get('/orders', [OrderController::class, 'index'])->name('orders');
 
 });

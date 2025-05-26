@@ -685,7 +685,9 @@
                         <h4>{{ $item['name'] }}</h4>
                         <p>Rp {{ number_format($item['price'], 0, ',', '.') }}</p>
                     </div>
-                    <img src="{{ asset($item['image']) }}" alt="{{ $item['name'] }}" onerror="this.src='https://via.placeholder.com/80'; console.log('Image failed to load: {{ $item['image'] }}');">
+                    <img src="{{ asset('images/' . $item['image']) }}" 
+                        alt="{{ $item['name'] }}" 
+                        onerror="this.src='https://via.placeholder.com/80'; console.log('Image failed to load: {{ $item['image'] }}');">
                 </div>
                 @endforeach
             </div>
