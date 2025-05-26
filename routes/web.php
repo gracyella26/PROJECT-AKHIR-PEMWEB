@@ -61,7 +61,7 @@ Route::prefix('api')->group(function () {
     Route::get('/home', [HomeController::class, 'index']);
     Route::get('/products/search', [HomeController::class, 'search']);
 
-    Route::get('/products/{id}', [ProductController::class, 'show']);
+    Route::get('/produk/{slug}', [ProductController::class, 'show'])->name('product.detail');
 
     Route::middleware('auth:sanctum')->group(function () {
         Route::get('/cart', [CartController::class, 'index']);

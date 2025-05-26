@@ -11,4 +11,9 @@ class Product extends Model
         'weight', 'skin_type', 'texture', 'scent', 'color',
         'rating', 'rating_count', 'review_count'
     ];
+
+     public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }

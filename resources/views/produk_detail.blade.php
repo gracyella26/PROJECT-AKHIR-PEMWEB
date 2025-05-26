@@ -8,7 +8,7 @@
         <!-- Gambar Produk -->
         <div class="col-md-6">
             <div class="product-image">
-                <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="img-fluid rounded">
+                <img src="{{ asset('images/' . $product->image) }}" alt="{{ $product->name }}" class="img-fluid rounded">
             </div>
         </div>
 
