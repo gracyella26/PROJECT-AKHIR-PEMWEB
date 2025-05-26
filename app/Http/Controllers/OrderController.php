@@ -57,4 +57,13 @@ class OrderController extends Controller
         $order = Order::with('items.product')->findOrFail($id);
         return response()->json($order);
     }
+
+    public function index()
+    {
+    // Ambil data order user yang sedang login
+    $orders = auth()->check() ? auth()->user()->orders : [];
+
+    return view('orders.index', compact('orders'));
+    }
+
 }

@@ -77,4 +77,7 @@ Route::prefix('api')->group(function () {
     });
 
     Route::post('/contact', [ContactController::class, 'store']);
+
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders');
+
 });
