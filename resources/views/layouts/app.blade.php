@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWABoKbB3A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     @yield('styles')
@@ -16,7 +17,7 @@
     <header class="header">
         <div class="container header-content">
             <div class="logo">
-                <img src="{{ asset('images/logo-peluk-wangi.png') }}" alt="Peluk Wangi Logo">
+                <img src="{{ asset('images/logo_peluk_wangi.png') }}" alt="Peluk Wangi Logo">
             </div>
             <nav class="main-nav">
                 <ul>
@@ -40,7 +41,7 @@
     <footer class="footer">
         <div class="container footer-grid">
             <div class="footer-col about-us">
-                <img src="{{ asset('images/logo-peluk-wangi.jpg') }}" alt="Peluk Wangi Logo" class="footer-logo">
+                <img src="{{ asset('images/logo_peluk_wangi.png') }}" alt="Peluk Wangi Logo" class="footer-logo">
                 <p>Subscribe</p>
                 <p>Get 10% off your first order</p>
             </div>
@@ -54,7 +55,7 @@
                 <h3>Account</h3>
                 <ul>
                     <li><a href="{{ route('login') }}">Login</a></li>
-                    <li><a href="{{ route('cart') }}">Cart</a></li>
+                    <li><a href="#">Cart</a></l>
                     <li><a href="{{ route('shop') }}">Shop</a></li>
                 </ul>
             </div>

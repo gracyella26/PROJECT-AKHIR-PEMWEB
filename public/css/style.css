@@ -172,11 +172,32 @@ body {
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    /* Tambahkan ini jika ingin btn-primary yang sendirian bisa di tengah dengan margin auto */
+    /* width: fit-content; */
+    /* margin: 0 auto; */
 }
 
 .btn-primary:hover {
     background-color: #4A703F;
 }
+
+.btn-secondary {
+    background-color: #6F4A31; /* Warna tombol sekunder */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Perbaiki hover untuk btn-secondary (sebelumnya salah menarget btn-primary) */
+.btn-secondary:hover {
+    background-color: #5A3A27; /* Warna hover yang lebih gelap */
+}
+
 
 .btn-outline {
     background-color: transparent;
@@ -185,7 +206,7 @@ body {
     padding: 10px 20px;
     border-radius: 5px;
     text-decoration: none;
-    display: inline-block;
+    display: inline-block; /* Tetap inline-block agar text-align: center bisa bekerja */
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -294,6 +315,8 @@ textarea {
 .hero-buttons {
     display: flex;
     gap: 20px;
+    /* Tambahkan ini jika ingin tombol hero-buttons di tengah grup */
+    /* justify-content: center; */
 }
 
 .hero-image {
@@ -389,6 +412,10 @@ textarea {
     padding: 20px;
     text-align: center;
     transition: transform 0.3s ease;
+    /* Tambahkan properti flexbox untuk mengatur konten dan tombol di bawah */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Menjaga konten atas dan bawah terpisah */
 }
 
 .product-card:hover {
@@ -403,25 +430,36 @@ textarea {
     margin-bottom: 15px;
 }
 
-.product-card h3 {
-    font-size: 1.4em;
-    margin-bottom: 10px;
-    color: #333;
-}
-
+/* HAPUS: product-rating */
+/* Kode ini tidak lagi diperlukan karena div rating sudah tidak ada di HTML */
+/*
 .product-rating {
-    color: #F9A825; /* Warna bintang */
+    color: #F9A825; // Warna bintang
     font-size: 1.2em;
     margin-bottom: 10px;
 }
+*/
 
 .product-price {
     font-size: 1.3em;
     font-weight: 600;
     color: #5C884A;
     margin-bottom: 15px;
+    /* Tambahkan ini jika ada rating: */
+    /* margin-top: auto; */
 }
 
+.product-actions {
+    display: flex;
+    justify-content: center; /* Pusat tombol "See Product" */
+    align-items: center;
+    width: 100%;
+    margin-top: auto; /* Memastikan tombol di bagian bawah card */
+}
+
+/* HAPUS: product-actions .add-to-cart-btn */
+/* Kode ini tidak lagi diperlukan karena tombol keranjang sudah dihapus */
+/*
 .product-actions .add-to-cart-btn {
     background-color: #5C884A;
     color: white;
@@ -435,50 +473,111 @@ textarea {
 .product-actions .add-to-cart-btn:hover {
     background-color: #4A703F;
 }
+*/
 
 /* Coming Soon Section */
 .coming-soon-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* 4 kolom untuk desktop */
+    grid-template-rows: auto auto; /* Dua baris, tinggi otomatis */
     gap: 20px;
     margin-bottom: 40px;
 }
 
-.coming-soon-item {
+.coming-soon-grid.new-layout .coming-soon-item {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.08);
     text-align: center;
     padding: 15px;
-}
-
-.coming-soon-item.large-item {
-    grid-column: span 2; /* Item besar menempati 2 kolom */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    overflow: hidden;
 }
 
-.coming-soon-item img {
+.coming-soon-grid.new-layout .coming-soon-item img {
     max-width: 100%;
-    height: 180px; /* Ukuran gambar yang relatif sama */
-    object-fit: cover;
+    height: auto;
     border-radius: 8px;
     margin-bottom: 10px;
+    object-fit: cover;
 }
 
-.coming-soon-item.large-item img {
-    height: 250px; /* Ukuran lebih besar untuk gambar di item besar */
-}
-
-.coming-soon-item p {
+.coming-soon-grid.new-layout .coming-soon-item p {
     font-weight: 500;
     color: #333;
     font-size: 1.1em;
+    margin-top: auto;
 }
 
-/* Responsive adjustments for homepage */
+/* Specific item sizing and placement */
+.coming-soon-grid.new-layout .item-large {
+    grid-column: span 2;
+    grid-row: span 2;
+    height: 100%;
+    padding: 0;
+    display: block;
+    position: relative; /* Untuk positioning teks absolut */
+}
+
+.coming-soon-grid.new-layout .item-large img {
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 0;
+}
+
+.coming-soon-grid.new-layout .item-large p {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 1.3em;
+    font-weight: 600;
+    z-index: 1;
+}
+
+.coming-soon-grid.new-layout .item-medium {
+    grid-column: span 1;
+    height: 250px;
+}
+
+.coming-soon-grid.new-layout .item-small {
+    grid-column: span 1;
+    height: 250px;
+}
+
+.coming-soon-grid.new-layout .item-full-width {
+    grid-column: span 2;
+    height: 200px;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+}
+
+.coming-soon-grid.new-layout .item-full-width img {
+    max-height: 100%;
+    width: auto;
+    object-fit: contain;
+    margin-bottom: 0;
+}
+
+/* Global .text-center class (pindahkan ke bagian atas jika belum ada) */
+.text-center {
+    text-align: center;
+}
+
+/* Tambahan: Pastikan text-right juga ada jika digunakan */
+.text-right {
+    text-align: right;
+}
+
+/* Responsive adjustments for homepage (pastikan ini di bagian bawah media queries) */
 @media (max-width: 992px) {
     .hero-inner {
         flex-direction: column;
@@ -506,17 +605,43 @@ textarea {
         align-items: center;
         gap: 30px;
     }
-    .coming-soon-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 kolom untuk tablet */
+    .products-section .product-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
-    .coming-soon-item.large-item {
-        grid-column: span 2;
+    .coming-soon-grid.new-layout {
+        grid-template-columns: repeat(2, 1fr); /* 2 kolom untuk tablet */
+        grid-template-rows: auto; /* Reset baris otomatis */
+    }
+    .coming-soon-grid.new-layout .item-large,
+    .coming-soon-grid.new-layout .item-medium,
+    .coming-soon-grid.new-layout .item-small,
+    .coming-soon-grid.new-layout .item-full-width {
+        grid-column: span 1; /* Semua item ambil 1 kolom di tablet */
+        height: auto; /* Biarkan tinggi menyesuaikan konten */
+        padding: 15px; /* Kembalikan padding */
+        flex-direction: column; /* Kembali ke tata letak kolom */
+    }
+    .coming-soon-grid.new-layout .item-large img {
+        height: 250px; /* Atur tinggi gambar tetap di tablet */
+        margin-bottom: 10px;
+    }
+    .coming-soon-grid.new-layout .item-large p {
+        position: static; /* Kembali ke posisi normal */
+        background-color: transparent;
+        color: #333;
+        padding: 0;
+        margin-top: 0;
+        font-size: 1.1em;
+    }
+    .coming-soon-grid.new-layout .item-full-width img {
+        max-height: 180px;
+        width: 100%;
     }
 }
 
 @media (max-width: 768px) {
     .product-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-template-columns: 1fr; /* 1 kolom untuk mobile */
     }
     .coming-soon-grid {
         grid-template-columns: 1fr; /* 1 kolom untuk mobile */

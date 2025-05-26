@@ -7,7 +7,14 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    public function index(Request $request)
+    // Menampilkan halaman keranjang (Blade)
+    public function index()
+    {
+        return view('cart.index'); // tampilan keranjang
+    }
+
+    // Mengambil data keranjang (JSON untuk API)
+    public function list(Request $request)
     {
         $carts = Cart::where('user_id', $request->user()->id)->with('product')->get();
         return response()->json($carts);
@@ -15,30 +22,4 @@ class CartController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'product_id' => 'required|exists:products,id',
-            'quantity' => 'required|integer|min:1',
-        ]);
-
-        $cart = Cart::updateOrCreate(
-            ['user_id' => $request->user()->id, 'product_id' => $request->product_id],
-            ['quantity' => $request->quantity]
-        );
-
-        return response()->json($cart, 201);
-    }
-
-    public function update(Request $request, $id)
-    {
-        $cart = Cart::findOrFail($id);
-        $cart->update(['quantity' => $request->quantity]);
-        return response()->json($cart);
-    }
-
-    public function destroy($id)
-    {
-        $cart = Cart::findOrFail($id);
-        $cart->delete();
-        return response()->json(['message' => 'Item removed']);
-    }
-}
+        $request->
